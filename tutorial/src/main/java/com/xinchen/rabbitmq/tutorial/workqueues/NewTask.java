@@ -3,6 +3,7 @@ package com.xinchen.rabbitmq.tutorial.workqueues;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
+import com.rabbitmq.client.MessageProperties;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
@@ -22,7 +23,7 @@ import java.util.concurrent.TimeoutException;
  */
 @Slf4j
 public class NewTask {
-    private static final String QUEUE_NAME = "hello_durable";
+    private static final String QUEUE_NAME = "hello";
 
     private static final String[] MESSAGE = {"Hello", "World", "Hello World!"};
 
@@ -47,7 +48,7 @@ public class NewTask {
 
             // 发布消息
             // 交换器名称,路由键,支持消息的其他属性-路由标题等,消息体
-            channel.basicPublish("",QUEUE_NAME,null,message.getBytes());
+            channel.basicPublish("",QUEUE_NAME, MessageProperties.MINIMAL_PERSISTENT_BASIC,message.getBytes());
             log.info(" [∨] Sent '{}'",message);
         } catch (TimeoutException | IOException e) {
             log.error("[x] NewTask Error: {}",e);
