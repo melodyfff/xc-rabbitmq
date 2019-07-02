@@ -6,3 +6,7 @@ target
 tutorial/.idea
 tutorial/target
 tutorial/*.iml
+
+messaging-rabbitmq/.idea
+messaging-rabbitmq/target
+messaging-rabbitmq/*.iml
