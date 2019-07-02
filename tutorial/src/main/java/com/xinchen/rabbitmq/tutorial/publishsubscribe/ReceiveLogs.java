@@ -30,7 +30,7 @@ public class ReceiveLogs {
         Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();
 
-        // 设置exchange名称,交换类型可选 : [direct(直接) ,topic(主题) ,headers(标题) ,fanout(扇出)]
+        // 设置exchange名称,交换类型可选 : [direct(直接) ,topic(主题) ,headers(标题) ,fanout(扇出/广播)]
         channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
 
         // 临时队列: 当我们没有向queueDeclare()提供参数时，我们 使用生成的名称创建一个非持久的，独占的自动删除队列
